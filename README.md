@@ -49,7 +49,7 @@ curl -s https://dev.cdn.unyt.org/uix/install.sh | sh
 
 and start the app:
 ```bash
-uix --live
+uix -w
 ```
 
 # Deployment files
