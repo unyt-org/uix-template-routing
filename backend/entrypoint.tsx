@@ -4,8 +4,11 @@ import AccountView from "../common/components/AccountView.tsx";
 
 export default {
 
-	// display some HTML on /home/welcome
-	'/home/welcome': <div><h1>Welcome to this Page!</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>,
+	// display some pages on /home/*
+	'/home/*': {
+		'/welcome': <div><h1>Welcome to this Page!</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>,
+		'/news': <div><h1>This is the news page</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>
+	},
 	
 	// display settingsView with color depending on route (e.g. http://localhost/settings/green)
 	'/settings/:color': ctx => <SettingsView color={ctx.match?.pathname.groups['color']}/>,
