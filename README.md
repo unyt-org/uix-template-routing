@@ -27,43 +27,6 @@ In the background, special interface module files are generated, making sure tha
 
 Access to these exports can be limited by setting DATEX permission filters.
 
-
-# Development
-
-Compilation of the TS files is not required. The project can be deployed as is.
-There is a devcontainer set up, containing the latest deno version.
-
-To run the project, you deno has to be installed:
-hit `CTRL`+`F5` to launch the project with the launch configuration.
-
-With the `--live` option, frontend browser tabs are automatically reloaded when a file has changed, which is useful for development, but should not be used in production.
-
-This command starts the backend endpoint and also exposes a web server on port 80 for frontend endpoints.
-
-## Installing UIX
-
-Alternatively, you can install the `uix` shortcut command:
-```bash
-curl -s https://dev.cdn.unyt.org/uix/install.sh | sh
-```
-
-and start the app:
-```bash
-uix -w
-```
-
-# Deployment files
-In the `.deployment` folder there are files to build a docker image and a docker-compose to host it
-The `.gitlab-ci.yml` contains code to build and deploy the dockerfile
-
-To Test the deployment image run
-
-```bash
-docker image build . -f ./deployment/Dockerfile -t test
-docker run -it -p 5790:80 test
-```
-(The docker container is currently only working on the main server)
-
 ---
 
 <sub>&copy; unyt 2024 • [unyt.org](https://unyt.org)</sub>
