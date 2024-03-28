@@ -1,9 +1,16 @@
-import { UIX } from "uix/uix.ts";
+import { Component } from 'uix/components/Component.ts';
 
-@Component
-export default class SettingsView extends UIX.BaseComponent<UIX.BaseComponent.Options & {color?:string}> {
-	@layout button1 = <button style={{background:this.options?.color??'white'}} onclick={()=>this.handleSettings()}>Apply settings</button>
-
+@template(function() {
+	return <>
+		<button 
+			style={{background:this.options?.color??'white'}} 
+			onclick:frontend={this.handleSettings}>
+			Apply settings
+		</button>
+	</>
+})
+@standalone
+export class SettingsView extends Component<{color?:string}> {
 	handleSettings() {
 		console.log("handling settings...")
 	}

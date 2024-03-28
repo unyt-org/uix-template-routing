@@ -1,7 +1,13 @@
-import { UIX } from "uix/uix.ts";
+import { Component } from "uix/components/Component.ts";
 
-@Component
-export default class AccountView extends UIX.ShadowDOMComponent<UIX.BaseComponent.Options> {
+@template(function() {
+	return <>
+		<h1>My Account</h1>
+		<p id="subPage">...</p>
+	</>
+})
+export class AccountView extends Component {
+	@id subPage!: HTMLDivElement;
 
 	protected tabs = {
 		settings: <div class="settings">Settings</div>,
@@ -9,13 +15,11 @@ export default class AccountView extends UIX.ShadowDOMComponent<UIX.BaseComponen
 		advanced: <div class="advanced">Advanced</div>
 	}
 
-	@layout titleView = <h1>My Account</h1>
-	@layout subPage = <p>...</p>
-
 	// show different subpage depending on route
 	override onRoute(identifier: 'settings'|'profile'|'advanced') {
 		console.log("new route: " + identifier);
-		if (this.tabs[identifier]) this.subPage = this.tabs[identifier];
+		if (this.tabs[identifier])
+			this.subPage.replaceChildren(this.tabs[identifier])
 	}
 
 	// route returned from getRouteIdentifier must match the requested identifier in onRoute

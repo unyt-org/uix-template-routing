@@ -63,3 +63,7 @@ docker image build . -f ./deployment/Dockerfile -t test
 docker run -it -p 5790:80 test
 ```
 (The docker container is currently only working on the main server)
+
+---
+
+<sub>&copy; unyt 2024 • [unyt.org](https://unyt.org)</sub>
