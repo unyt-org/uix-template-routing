@@ -4,7 +4,7 @@ import { Component } from 'uix/components/Component.ts';
 	return <>
 		<button 
 			style={{background: this.properties?.color ?? 'white'}} 
-			onclick:frontend={() => this.handleSettings()}>
+			onclick:frontend={this.handleSettings}>
 			Apply settings
 		</button>
 	</>;

@@ -41,7 +41,7 @@ export default {
 	
 	// Display settingsView with color depending on route (e.g. http://localhost/settings/green)
 	'/settings/:color': (_, {color}) => 
-		<SettingsView color={color}/>,
+		(<SettingsView color={color}/>),
 	
 	// Display static HTML (UIX library not loaded)
 	'/about': renderStatic(<div>
