@@ -1,4 +1,4 @@
-# UIX Base Project
+# UIX Template: Routing
 
 This repository provides a simple UIX setup, including backend and frontend, a docker deployment configuration and configuration files.
 
