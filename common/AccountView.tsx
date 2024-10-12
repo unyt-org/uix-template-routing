@@ -4,7 +4,7 @@ import { Component } from "uix/components/Component.ts";
 	return <>
 		<h1>My Account</h1>
 		<p id="subPage">...</p>
-	</>
+	</>;
 })
 export class AccountView extends Component {
 	@id subPage!: HTMLDivElement;
@@ -19,7 +19,8 @@ export class AccountView extends Component {
 	override onRoute(identifier: 'settings'|'profile'|'advanced') {
 		console.log("new route: " + identifier);
 		if (this.tabs[identifier])
-			this.subPage.replaceChildren(this.tabs[identifier])
+			this.subPage.replaceChildren(this.tabs[identifier]);
+		else this.subPage.replaceChildren("Not found!");
 	}
 
 	// route returned from getRouteIdentifier must match the requested identifier in onRoute
