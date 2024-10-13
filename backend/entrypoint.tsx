@@ -1,11 +1,11 @@
-import {SettingsView} from "common/components/SettingsView.tsx";
-import {AccountView} from "common/components/AccountView.tsx";
-import { Entrypoint } from "uix/html/entrypoints.ts";
+import { SettingsView } from "common/SettingsView.tsx";
+import { AccountView } from "common/AccountView.tsx";
+import { Entrypoint } from "uix/providers/entrypoints.ts";
 import { renderBackend, renderStatic } from "uix/base/render-methods.ts";
 
 export default {
 	// Backend rendered index page
-	'/': renderBackend(<div style={{display: "flex", "flex-direction": "column"}}>
+	'/': renderBackend(<div style={{ display: "flex", "flex-direction": "column" }}>
 		<h1>Overview</h1>
 		<h2>Home</h2>
 		<a href="/home/welcome">/home/welcome</a>
@@ -29,18 +29,31 @@ export default {
 
 	// Nested routes for /home/*
 	'/home/*': {
-		'/welcome': <div><h1>Welcome to this Page!</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>,
-		'/news': <div><h1>This is the news page</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>
+		'/welcome': <div>
+			<h1>Welcome to this Page!</h1>
+			<p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p>
+		</div>,
+		'/news': <div>
+			<h1>This is the news page</h1>
+			<p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p>
+		</div>
 	},
 	
 	// Display settingsView with color depending on route (e.g. http://localhost/settings/green)
-	'/settings/:color': (ctx, {color}) => <SettingsView color={color}/>,
+	'/settings/:color': (_, {color}) => 
+		(<SettingsView color={color}/>),
 	
 	// Display static HTML (UIX library not loaded)
-	'/about': renderStatic(<div><h1>About</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>),
+	'/about': renderStatic(<div>
+		<h1>About</h1>
+		<p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p>
+	</div>),
 	
 	// Display dynamic HTML (no SSR)
-	'/help': <div><h1>Help</h1><p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p></div>,
+	'/help': <div>
+		<h1>Help</h1>
+		<p>Nullam tristique ut risus eget viverra. Aenean lacinia ultrices tempus. Pellentesque pellentesque.</p>
+	</div>,
 
 	// Return account view (includes internal routing, e.g. http://localhost/account-from-backend/profile)
 	'/account-from-backend*': <AccountView/>,
