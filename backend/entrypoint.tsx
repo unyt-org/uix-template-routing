@@ -14,13 +14,14 @@ export default {
 		<h2>Settings</h2>
 		<a href="/settings/blue">/settings/blue</a>
 		<a href="/settings/red">/settings/red</a>
+		<a href="/settings?color=yellow">/settings?color=yellow</a>
 		
 		<h2>Account</h2>
-		<a href="/account-from-backend/unyt">/account-from-backend/unyt</a>
 		<a href="/account">/account</a>
 		<a href="/account/profile">/account/profile</a>
 		<a href="/account/settings">/account/settings</a>
 		<a href="/account/advanced">/account/advanced</a>
+		<a href="/backend/account/advanced">/backend/account/advanced</a>
 		
 		<h2>Error</h2>
 		<a href="/404">/404</a>
@@ -39,6 +40,10 @@ export default {
 		</div>
 	},
 	
+	// Display settingsView with color depending on query param (e.g. http://localhost/settings/green)
+	'/settings': (ctx,) => 
+		(<SettingsView color={ctx.searchParams.get("color") || undefined}/>),
+
 	// Display settingsView with color depending on route (e.g. http://localhost/settings/green)
 	'/settings/:color': (_, {color}) => 
 		(<SettingsView color={color}/>),
@@ -56,7 +61,7 @@ export default {
 	</div>,
 
 	// Return account view (includes internal routing, e.g. http://localhost/account-from-backend/profile)
-	'/account-from-backend*': <AccountView/>,
+	'/backend/account*': <AccountView/>,
 
 	// Let the /account pass to frontend routing
 	'/account*': null,

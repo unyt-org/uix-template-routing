@@ -6,6 +6,7 @@ import { Component } from "uix/components/Component.ts";
 		<p id="subPage">...</p>
 	</>;
 })
+@standalone
 export class AccountView extends Component {
 	@id subPage!: HTMLDivElement;
 
@@ -17,10 +18,10 @@ export class AccountView extends Component {
 
 	// show different subpage depending on route
 	override onRoute(identifier: 'settings'|'profile'|'advanced') {
-		console.log("new route: " + identifier);
+		this.subPage.childNodes.forEach(e => this.subPage.removeChild(e));
 		if (this.tabs[identifier])
-			this.subPage.replaceChildren(this.tabs[identifier]);
-		else this.subPage.replaceChildren("Not found!");
+			this.subPage.append(this.tabs[identifier]);
+		else this.subPage.append("Not found!");
 	}
 
 	// route returned from getRouteIdentifier must match the requested identifier in onRoute
